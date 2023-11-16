@@ -1,8 +1,8 @@
-package es.ulpgc.eii;
+package tp.practicas;
 
 public class Course {
-    private int code;
-    private String name;
+    private final int code;
+    private final String name;
 
     public Course(int code, String name) {
         this.code = code;
@@ -17,9 +17,23 @@ public class Course {
         return name;
     }
 
-    public String toString(){
-        String id = "(" + code + ")" + name;
-        //System.out.println(id);
-        return id;
+    @Override
+    public String toString() {
+        return "(" + code + ")" + name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(code);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if( o == this )
+            return true;
+        if( o == null || getClass() != o.getClass() )
+            return false;
+        Course c = (Course) o;
+        return code == c.getCode();
     }
 }
